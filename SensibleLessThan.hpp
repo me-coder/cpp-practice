@@ -53,5 +53,19 @@
 
 // PROVIDE YOUR IMPLEMENTATION OF SensibleLessThan HERE
 
-#endif
+template <class T>
+class SensibleLessThan
+{
+public:
+    SensibleLessThan() {}
 
+    bool operator ()(const T & lhs, const T & rhs) const
+    {
+        return true;
+    }
+
+private:
+    bool comparer(const T & lhs, const T & rhs) const;
+};
+
+#endif
