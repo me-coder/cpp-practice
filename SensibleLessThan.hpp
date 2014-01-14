@@ -52,20 +52,22 @@
  */
 
 // PROVIDE YOUR IMPLEMENTATION OF SensibleLessThan HERE
+#include <string>
 
-template <class T>
+template <typename T>
 class SensibleLessThan
 {
 public:
-    SensibleLessThan() {}
-
-    bool operator ()(const T & lhs, const T & rhs) const
+    bool operator()(T const & lhs, T const & rhs)
+    {
+        std::string str1(lhs), str2(rhs);
+        return this->Comparer(str1.c_str(), str2.c_str());
+    }
+private:
+    bool Comparer(const char * lhs, const char * rhs)
     {
         return true;
     }
-
-private:
-    bool comparer(const T & lhs, const T & rhs) const;
 };
 
 #endif
