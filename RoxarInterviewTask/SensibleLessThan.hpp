@@ -66,7 +66,7 @@ public:
 private:
     bool Comparer(const char * lhs, const char * rhs)
     {
-        return true;
+        return false;
     }
 };
 

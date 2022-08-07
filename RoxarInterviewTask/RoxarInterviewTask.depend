@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1328415452 source:/home/yashodhan/Projects/cpp/YashodhanPise_RoxarInterviewTask/main.cpp
+	<string>
+	"UnitTests.hpp"
+
+1328415448 /home/yashodhan/Projects/cpp/YashodhanPise_RoxarInterviewTask/UnitTests.hpp
+	<vector>
+	<set>
+	<algorithm>
+	"TestMacros.hpp"
+	"SensibleLessThan.hpp"
+
+1389547097 /home/yashodhan/Projects/cpp/YashodhanPise_RoxarInterviewTask/TestMacros.hpp
+	<iostream>
+	<iomanip>
+
+1389716739 /home/yashodhan/Projects/cpp/YashodhanPise_RoxarInterviewTask/SensibleLessThan.hpp
+	<string>
+
+1389633575 source:/home/yashodhan/Projects/cpp/YashodhanPise_RoxarInterviewTask/SensibleLessThan.cpp
+	"SensibleLessThan.hpp"
+
