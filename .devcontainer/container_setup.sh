@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 # apk update
 # apk add --no-cache build-base=0.5-r3
