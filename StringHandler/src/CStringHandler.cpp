@@ -4,6 +4,7 @@
  * Modified: 21-March-2008
  * Modified: 29-March-2008
  * Updated: 09-February-2010
+ * Updated: 04-March-2025
  */
 
 /*
@@ -79,7 +80,7 @@ CStringHandler::~CStringHandler()
 /**
  * Returns charcter string for this CStringHandler object
  */
-char *CStringHandler::CSHToChar(void) const
+const char *CStringHandler::CSHToChar(void) const
 {
   return m_str;
 }
@@ -409,9 +410,10 @@ bool CStringHandler::RemoveAll(const char *ch)
       {
         buf = (char *)realloc(buf, sizeof(char) * (strlen(buf) + strlen(tokens) + 1));
         buf = strncat(buf, tokens, strlen(tokens));
-        // cout << buf << endl;
         tokens = strtok(NULL, ch);
+        // cout << buf << endl;
       }
+
       free(dummy);
       dummy = NULL;
 
@@ -444,33 +446,36 @@ bool CStringHandler::RemoveAll(const char *ch)
  */
 bool CStringHandler::RemoveAll(char *&str, const char *ch)
 {
-  if (!str)
-    return false;
-
-  try
+  bool b_rval = false;
+  if (str)
   {
-    char *temp = strtok(str, ch);
-    char *buf = (char *)malloc(sizeof(char));
-    memset(buf, 0x00, sizeof(char));
-
-    while (temp)
+    try
     {
-      buf = (char *)realloc(this->m_str, sizeof(char) * (strlen(str) + strlen(temp) + 1));
-      strncat(buf, temp, strlen(temp) + 1);
-      temp = strtok(NULL, ch);
+      char *temp = strtok(str, ch);
+      char *buf = (char *)malloc(sizeof(char));
+      memset(buf, 0x00, sizeof(char));
+
+      while (temp)
+      {
+        buf = (char *)realloc(this->m_str, sizeof(char) * (strlen(str) + strlen(temp) + 1));
+        strncat(buf, temp, strlen(temp) + 1);
+        temp = strtok(NULL, ch);
+      }
+
+      str = (char *)realloc(str, sizeof(char) * (strlen(buf) + 1));
+
+      free(buf);
+      buf = NULL;
+
+      b_rval = true;
     }
-
-    str = (char *)realloc(str, sizeof(char) * (strlen(buf) + 1));
-
-    free(buf);
-    buf = NULL;
-  }
-  catch (...)
-  {
-    return false;
+    catch (...)
+    {
+      b_rval = false;
+    }
   }
 
-  return true;
+  return b_rval;
 }
 
 /**
@@ -554,23 +559,25 @@ void CStringHandler::operator+=(const char *str)
 /**
  * Operator '=' overload.
  */
-void CStringHandler::operator=(const CStringHandler &cstr)
+CStringHandler &CStringHandler::operator=(const CStringHandler cstr)
 {
   delete[] this->m_str;
   this->m_str = new char[(int)cstr.GetLength() + 1];
 
   strcpy(this->m_str, cstr.CSHToChar());
+  return *this;
 }
 
 /**
  * Operator '=' overload.
  */
-void CStringHandler::operator=(const char *str)
+CStringHandler &CStringHandler::operator=(const char *str)
 {
   delete[] this->m_str;
   this->m_str = new char[strlen(str) + 1];
 
   strcpy(this->m_str, str);
+  return *this;
 }
 
 /**

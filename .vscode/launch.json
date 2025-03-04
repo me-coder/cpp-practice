@@ -2,13 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) Launch StringHandler",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/string_handler_exe",
+            "program": "${workspaceFolder}/StringHandler/bin/string_handler",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/StringHandler",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

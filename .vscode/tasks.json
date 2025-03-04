@@ -9,9 +9,12 @@
                 "debug"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/StringHandler"
             },
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": [
                 "$gcc"
             ]
@@ -24,11 +27,11 @@
                 "run_debug"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/StringHandler"
             },
             "group": {
                 "kind": "test",
-                "isDefault": true
+                "isDefault": false
             },
             "problemMatcher": [
                 "$gcc"
@@ -42,7 +45,7 @@
                 "release"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/StringHandler"
             },
             "group": "build",
             "problemMatcher": [
@@ -57,7 +60,7 @@
                 "run"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/StringHandler"
             },
             "group": {
                 "kind": "test"

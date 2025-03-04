@@ -2,7 +2,6 @@
     "name": "c++",
     "image": "docker.io/library/alpine:latest",
     "runArgs": [
-        // "--env-file=.env",
         // "--rm",
         // "--network=host",
         "--name=cpp"
@@ -24,7 +23,7 @@
     "workspaceMount": "source=${localWorkspaceFolder},target=/cpp,type=bind,consistency=cached",
     "workspaceFolder": "/cpp",
     "remoteUser": "root",
-    "postStartCommand": "gcc -v",
+    "postStartCommand": "g++ -v",
     "postCreateCommand": "chown 755 ${containerWorkspaceFolder}/.devcontainer/container_setup.sh;sh ${containerWorkspaceFolder}/.devcontainer/container_setup.sh",
     "forwardPorts": [],
     "customizations": {
@@ -35,7 +34,9 @@
                 "google.geminicodeassist",
                 "streetsidesoftware.code-spell-checker"
             ],
-            "settings": {}
+            "settings": {
+                "git.path": "/usr/bin/git"
+            }
         }
     },
     "shutdownAction": "stopContainer"

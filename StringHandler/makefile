@@ -3,21 +3,21 @@ MKDIR_P = mkdir -p
 
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -Wall -std=c++11 -I. -fPIC
+CXXFLAGS := -Wall -std=c++14 -I./headers -fPIC
 
 # Debug flag (can be enabled/disabled)
 DEBUG_FLAGS := -g
 
 # Source and object files
-SRCS := CStringHandler.cpp main.cpp
-OBJS := $(SRCS:%.cpp=obj/%.o)
+SRCS := $(wildcard src/*.cpp)
+OBJS := $(SRCS:src/%.cpp=obj/%.o)
 
 # Executable name
-TARGET := bin/string_handler_exe
+TARGET := bin/string_handler
 DEBUG_TARGET := $(TARGET)
 
 # Default target
-all: release
+all: run
 
 prepare:
 	${MKDIR_P} bin
@@ -40,15 +40,16 @@ $(DEBUG_TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(DEBUG_FLAGS) -o $(DEBUG_TARGET) $(OBJS)
 
 # Compile source files to object files
-obj/%.o: %.cpp
+obj/%.o: src/%.cpp
+	$(MKDIR_P) $(dir $@)
 	$(CXX) $(CXXFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 
 # Clean up object files and executables
 clean:
-	rm -rf $(OBJS) bin/$(TARGET) bin/$(DEBUG_TARGET) bin obj
+	rm -rf $(OBJS) $(TARGET) $(DEBUG_TARGET) bin obj
 
 # Phony targets
-.PHONY: all clean build debug release
+.PHONY: all clean build debug release run run_debug
 
 # Example run targets
 run: release
